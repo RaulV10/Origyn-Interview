@@ -24,6 +24,7 @@ To learn more before you start working with og_new_hires, see the following docu
 ```
 
 - NodeJS >=16.0.0
+  Note: Make sure your node version is any version of 16 otherwise you may run into issues.
 
 ## Get Started
 
