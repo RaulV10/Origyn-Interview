@@ -73,12 +73,12 @@ Once you have the project running these are your tasks:
 
 Important note: Make sure you read the project first including the challenge, the extra mile and how to submit the project. You may want to start from branching out and by adding Typescript functionality from the beggining.
 
-- Inspect the project structure. On the backend folder you have 3 canisters running (droute, starter, welcome). These are your smart contract written in Motoko.
+- Inspect the project structure. On the backend folder you have 3 canisters running (droute, starter, welcome). These are your smart contracts written in Motoko.
 - Try to understand Motoko syntax and the functions for each canister.
 - Enter the following from the command line on the root directory of the project and see the response
   - dfx canister call starter hello
   - dfx canister call starter greet '("Hello from command line")'
-- Create your own Motoko function in the starter canister and call it from the command line (note that after you create your function on starter canister you will need to recommpile the canister. Hint: dfx deploy)
+- Create your own Motoko function in the starter canister and call it from the command line (note that after you create your function on starter canister you will need to recompile the canister. Hint: dfx deploy)
 - Inspect front end directory and the components
 - Inspect each individual component that interacts with the backend under the view folder
 - Understand how we call the backend canister and the functions
@@ -97,6 +97,5 @@ Important note: Make sure you read the project first including the challenge, th
 
 ### How to submit the project?
 
-- Create a branch and name it og_your_first_name
-- Push the branch - If you can't push create a PR
-- Send an email to Fernando (you already have my email)
+- Create a new repo on your github and push the project there
+- Send an email to Fernando (you already have my email) with the project's link
