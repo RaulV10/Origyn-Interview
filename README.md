@@ -1,10 +1,10 @@
 # Origyn Starter
 
-Welcome to your new origyn_starter project. This template has been customized with Motoko, Connect2IC, React and Material UI.
+Welcome to your new og_new_hires project. This template has been customized with Motoko, Connect2IC, React and Material UI.
 
 To get started, you might want to explore the project directory structure and the default configuration file. Working with this project in your development environment will not affect any production deployment or identity tokens.
 
-To learn more before you start working with origyn_starter, see the following documentation available online:
+To learn more before you start working with og_new_hires, see the following documentation available online:
 
 - [Quick Start](https://smartcontracts.org/docs/current/developer-docs/quickstart/hello10mins)
 - [SDK Developer Tools](https://sdk.dfinity.org/docs/developers-guide/sdk-guide.html)
@@ -30,19 +30,19 @@ To learn more before you start working with origyn_starter, see the following do
 With Git and credentials:
 
 ```
-git clone https://github.com/ORIGYN-SA/og_starter.git
+git clone https://github.com/ORIGYN-SA/og_new_hires.git
 ```
 
 With Git and SSH:
 
 ```
-git clone git@github.com:ORIGYN-SA/og_starter.git
+git clone git@github.com:ORIGYN-SA/og_new_hires.git
 ```
 
 With NPM:
 
 ```
-cd og_starter
+cd og_new_hires
 npm install
 ```
 
