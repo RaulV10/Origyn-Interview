@@ -76,8 +76,15 @@ Important note: Make sure you read the project first including the challenge, th
 - Inspect the project structure. On the backend folder you have 3 canisters running (droute, starter, welcome). These are your smart contracts written in Motoko.
 - Try to understand Motoko syntax and the functions for each canister.
 - Enter the following from the command line on the root directory of the project and see the response
-  - dfx canister call starter hello
-  - dfx canister call starter greet '("Hello from command line")'
+
+```
+dfx canister call starter hello
+```
+
+```
+dfx canister call starter greet '("Hello from command line")'
+```
+
 - Create your own Motoko function in the starter canister and call it from the command line (note that after you create your function on starter canister you will need to recompile the canister. Hint: dfx deploy)
 - Inspect front end directory and the components
 - Inspect each individual component that interacts with the backend under the view folder
