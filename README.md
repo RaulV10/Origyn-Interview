@@ -17,7 +17,7 @@ To learn more before you start working with og_new_hires, see the following docu
 
 ## Requirements
 
-- Install the following version of the DFINITY Canister SDK
+- Install the Internet Computer SDK
 
 ```
     sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
