@@ -1,5 +1,6 @@
 import Welcome  "canister:welcome";
 import Buffer "mo:base/Buffer";
+import Debug "mo:base/Debug";
 import Array "mo:base/Array";
 import TrieMap "mo:base/TrieMap";
 import Principal "mo:base/Principal";
