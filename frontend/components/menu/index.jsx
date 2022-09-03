@@ -15,6 +15,7 @@ import CounterIcon from "@mui/icons-material/ControlPoint"
 import LightIcon from "@mui/icons-material/Brightness7Rounded"
 import DarkIcon from "@mui/icons-material/Brightness4Rounded"
 import CallIcon from "@mui/icons-material/Call"
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import useSite from "../../hooks/useSite"
 // import {
 //   ConnectButton,
@@ -49,6 +50,11 @@ const Items = [
     title: "INTER CALL",
     icon: <CallIcon />,
   },
+  {
+    page: "todo-list",
+    title: "TODO LIST",
+    icon: <FormatListBulletedIcon />
+  }
 ]
 
 function MenuList() {
