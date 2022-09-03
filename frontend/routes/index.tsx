@@ -28,6 +28,7 @@ export default function Router() {
         { path: "/greeting", element: <GreetingPage /> },
         { path: "/counter", element: <CounterPage /> },
         { path: "/inter-call", element: <InterCanisterPage /> },
+        { path: "/todo-list", element: <TodoList /> },
       ],
     },
 
@@ -56,3 +57,4 @@ const InterCanisterPage = Loadable(
   lazy(() => import("../views/InterCanisterPage")),
 )
 const NotFound = Loadable(lazy(() => import("../views/Page404")))
+const TodoList = Loadable(lazy(() => import('../views/TodoPage')))
