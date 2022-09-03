@@ -126,4 +126,24 @@ actor {
     public func removeFromTrieMap(key : Principal) : async ?Int {
         _triemap.remove(key);
     };
+
+    public func addToList(str : Text) : async Text {
+        return str;
+    };
+
+    var todo : [Text] = ["Create a Motoko function that returns a list of things to do", 
+    "Create a view component with React and show the list", 
+    "With React filter the list with any attribute you prefer"];
+    public func loadTodoList (y: Text) : async [Text] {
+        let res = Buffer.Buffer<Text>(0);
+        for(i in todo.vals()){
+            res.add(i);
+        };
+        
+        res.add(y);
+        let array = res.toArray();
+        todo := array;
+
+        return array;
+    };
 };
