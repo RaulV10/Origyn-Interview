@@ -127,14 +127,12 @@ actor {
         _triemap.remove(key);
     };
 
-    public func addToList(str : Text) : async Text {
-        return str;
-    };
-
     var todoDesc : [Text] = ["Create a Motoko function that returns a list of things to do", 
     "Create a view component with React and show the list", 
-    "With React filter the list with any attribute you prefer"];
-    var todoState : [Bool] = [false, true, false];
+    "With React filter the list with any attribute you prefer", 
+    "Add functionality to the project to work with Typescript", 
+    "Do the project challenge in Typescript"];
+    var todoState : [Bool] = [true, true, true, false, false];
 
     public func loadTodoList (y: Text) : async [Text] {
         let desc = Buffer.Buffer<Text>(0);
