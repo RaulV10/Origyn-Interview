@@ -3,14 +3,15 @@ import { Box, Typography, Button } from "@mui/material"
 import { starter } from "canisters/starter"
 import LogoSquare from "/frontend/assets/logo_square.svg"
 
-function HelloPageView() {
-  const [helloWorld, setHelloWorld] = useState("")
+const HelloPageView = () => {
+  const [helloWorld, setHelloWorld] = useState<string>("")
 
-  async function queryHelloWorld() {
+  const queryHelloWorld = async () => {
     setHelloWorld("Query is in progress...")
-    let hello = await starter.hello()
+    let hello: string = await starter.hello()
     setHelloWorld(hello)
   }
+
   return (
     <Box
       margin="6rem 0 0 0"

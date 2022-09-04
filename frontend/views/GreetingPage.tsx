@@ -3,17 +3,18 @@ import { Box, Typography, Button, TextField } from "@mui/material"
 import { starter } from "canisters/starter"
 import LogoSquare from "/frontend/assets/logo_square.svg"
 
-function GreetingPageView() {
-  const [inputStr, SetInputStr] = useState("")
-  const [hello, setHello] = useState("")
-  async function doGreet() {
+const GreetingPageView = () => {
+  const [inputStr, SetInputStr] = useState<string>("")
+  const [hello, setHello] = useState<string>("")
+
+  const doGreet = async () => {
     if (inputStr !== "") {
       setHello("Greeting in progress...")
-      let greeting = await starter.greet(inputStr)
-      console.log(greeting)
+      let greeting: string = await starter.greet(inputStr)
       setHello(greeting)
     }
   }
+
   return (
     <Box
       margin="6rem 0 0 0"

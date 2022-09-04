@@ -3,12 +3,11 @@ import { Box, Typography, Button, LinearProgress } from "@mui/material"
 import { starter } from "canisters/starter"
 import LogoSquare from "/frontend/assets/logo_square.svg"
 
-function CounterPageView() {
-  const [count, setCount] = useState()
+const CounterPageView = () => {
+  const [count, setCount] = useState<string>()
+  const [isDisabled, setIsDisabled] = useState<boolean>(false)
 
-  const [isDisabled, setIsDisabled] = useState(false)
-
-  async function refreshCounter() {
+  const refreshCounter = async () => {
     const res = await starter.getValue()
     setCount(res.toString())
     setIsDisabled(false)
@@ -20,7 +19,6 @@ function CounterPageView() {
 
   const onIncrementClick = useCallback(async () => {
     setIsDisabled(true)
-    setCount("...")
     await starter.increment()
     refreshCounter()
   }, [starter])
