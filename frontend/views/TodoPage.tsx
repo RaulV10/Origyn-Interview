@@ -125,10 +125,7 @@ function TodoPageView() {
             key={value.desc}
             disablePadding
           >
-            <ListItemButton role={undefined} onClick={() => {
-              console.log(todoListData);
-              handleToggle(index);
-            }} dense>
+            <ListItemButton role={undefined} onClick={handleToggle(index)} dense>
               <ListItemIcon>
                 <Checkbox
                   edge="start"
@@ -137,10 +134,10 @@ function TodoPageView() {
                   tabIndex={-1}
                   disableRipple
                   inputProps={{ 'aria-labelledby': labelId }}
-                  // onChange={(e) => {
-                  //   todoListData[index].state = e.target.checked;
-                  //   setTodoListData(todoListData);
-                  // }}
+                  onChange={(e) => {
+                    todoListData[index].state = e.target.checked;
+                    setTodoListData(todoListData);
+                  }}
                 />
               </ListItemIcon>
               <ListItemText id={labelId} primary={`${value.desc}`} />
