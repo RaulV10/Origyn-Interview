@@ -131,19 +131,38 @@ actor {
         return str;
     };
 
-    var todo : [Text] = ["Create a Motoko function that returns a list of things to do", 
+    var todoDesc : [Text] = ["Create a Motoko function that returns a list of things to do", 
     "Create a view component with React and show the list", 
     "With React filter the list with any attribute you prefer"];
-    public func loadTodoList (y: Text) : async [Text] {
-        let res = Buffer.Buffer<Text>(0);
-        for(i in todo.vals()){
-            res.add(i);
-        };
-        
-        res.add(y);
-        let array = res.toArray();
-        todo := array;
+    var todoState : [Bool] = [false, true, false];
 
-        return array;
+    public func loadTodoList (y: Text) : async [Text] {
+        let desc = Buffer.Buffer<Text>(0);
+        let state = Buffer.Buffer<Bool>(0);
+
+        for(i in todoDesc.vals()){
+            desc.add(i);
+        };
+
+        for(j in todoState.vals()){
+            state.add(j);
+        };
+
+        if(y != "") {
+            desc.add(y);
+            state.add(false);
+        };
+
+        let arrayDesc = desc.toArray();
+        todoDesc := arrayDesc;
+
+        let arrayState = state.toArray();
+        todoState := arrayState;
+
+        return arrayDesc;
+    };
+
+    public func loadTodoListState () : async [Bool] {
+        return todoState;
     };
 };
