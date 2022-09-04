@@ -1,89 +1,84 @@
 import React, { useState, useEffect } from "react"
-import { Box, Typography, ToggleButton, ToggleButtonGroup, Button, TextField, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Checkbox } from "@mui/material"
+
+import {
+  Box,
+  Typography,
+  ToggleButton,
+  ToggleButtonGroup,
+  Button,
+  TextField,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Checkbox,
+} from "@mui/material"
+
 import { starter } from "canisters/starter"
-import LogoSquare from "/frontend/assets/logo_square.svg"
+import LogoSquare from "../../frontend/assets/logo_square.svg"
 
-function TodoPageView() {
+const TodoPageView = () => {
+  interface TodoList {
+    desc: string
+    state: boolean
+  }
 
-    interface TodoList {
-      desc: string;
-      state: boolean;
+  let list: TodoList[] = []
+  const EVERYTHING: number = 1
+  const COMPLETED: number = 2
+  const UNFINISHED: number = 3
+
+  const [inputStr, setInputStr] = useState<string>("")
+  const [loading, setLoading] = useState<string>("")
+  const [todoListData, setTodoListData] = useState<TodoList[]>([])
+  const [alignment, setAlignment] = useState<number>(EVERYTHING)
+
+  const handleChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: number,
+  ) => {
+    setAlignment(newAlignment)
+  }
+
+  const allTodoListData = async () => {
+    setLoading("Loading list...")
+    const todoDesc: [string] = await starter.loadTodoList(inputStr)
+    const todoState: [boolean] = await starter.loadTodoListState()
+
+    switch (alignment) {
+      case EVERYTHING:
+        for (let i: number = 0; i < todoDesc.length; i++) {
+          list.push({ desc: todoDesc[i], state: todoState[i] })
+        }
+        break
+      case COMPLETED:
+        for (let i: number = 0; i < todoDesc.length; i++) {
+          if (todoState[i]) {
+            list.push({ desc: todoDesc[i], state: todoState[i] })
+          }
+        }
+        break
+      case UNFINISHED:
+        for (let i: number = 0; i < todoDesc.length; i++) {
+          if (!todoState[i]) {
+            list.push({ desc: todoDesc[i], state: todoState[i] })
+          }
+        }
+        break
+      default:
+        break
     }
 
-    let list: TodoList[] = [];
-    const EVERYTHING = 1;
-    const COMPLETED = 2;
-    const UNFINISHED = 3;
+    setLoading("")
+    setTodoListData(list)
+    setInputStr("")
+  }
 
-    const [inputStr, setInputStr] = React.useState<string>("");
-    const [loading, setLoading] = React.useState<string>("");
-    const [checked, setChecked] = React.useState([0]);
-    const [todoListData, setTodoListData] = React.useState<TodoList[]>([]);
-    const [alignment, setAlignment] = React.useState<number>(EVERYTHING);
-    
-    const handleChange = (
-      event: React.MouseEvent<HTMLElement>,
-      newAlignment: number,
-    ) => {
-      setAlignment(newAlignment);
-    };
+  useEffect(() => {
+    allTodoListData()
+  }, [alignment])
 
-    const handleToggle = (value: number) => () => {
-      const currentIndex = checked.indexOf(value);
-      const newChecked = [...checked];
-  
-      if (currentIndex === -1) {
-        newChecked.push(value);
-      } else {
-        newChecked.splice(currentIndex, 1);
-      }
-
-      console.log(todoListData[value]);
-      // No se me ocurre, pero se tiene que cambiar aqui el valor de state en el index donde le picaron
-      // todoListData[value].state = newChecked[currentIndex];
-      setTodoListData(todoListData);
-  
-      setChecked(newChecked);
-    };
-
-    const allTodoListData = async () => {
-      setLoading("Loading list...");
-      const todoDesc = await starter.loadTodoList(inputStr);
-      const todoState = await starter.loadTodoListState();
-
-      switch(alignment) {
-        case EVERYTHING:
-          for(let i:number =0; i < todoDesc.length; i++) {
-            list.push({desc: todoDesc[i], state: todoState[i]});
-          }
-          break;
-        case COMPLETED:
-          for(let i:number =0; i < todoDesc.length; i++) {
-            console.log("i: " + todoState[i]);
-            if(todoState[i]) { list.push({desc: todoDesc[i], state: todoState[i]}); }
-          }
-          break;
-        case UNFINISHED:
-          for(let i:number =0; i < todoDesc.length; i++) {
-            console.log("i: " + todoState[i]);
-            if(!todoState[i]) { list.push({desc: todoDesc[i], state: todoState[i]}); }
-          }
-          break;
-        default:
-          break;
-      }
-
-      setLoading("");
-      setTodoListData(list);
-      setInputStr("");
-    };
-
-    useEffect(() => {
-      console.log(alignment);
-      allTodoListData();
-  }, [alignment]);
-
-    return (
+  return (
     <Box
       margin="0 0 0 0"
       display="flex"
@@ -117,37 +112,28 @@ function TodoPageView() {
         children={loading}
       />
 
-      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      {todoListData.map((value, index) => {
-        const labelId = `checkbox-list-label-${value}`;
-        return (
-            <ListItem
-            key={value.desc}
-            disablePadding
-          >
-            <ListItemButton role={undefined} onClick={handleToggle(index)} dense>
+      <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+        {todoListData.map((value: TodoList) => {
+          const labelId = `checkbox-list-label-${value}`
+          return (
+            <ListItem key={value.desc}>
               <ListItemIcon>
                 <Checkbox
+                  readOnly
                   edge="start"
-                  checked={checked.indexOf(index) !== -1}
-                  // checked={value.state}
+                  checked={value.state}
                   tabIndex={-1}
                   disableRipple
-                  inputProps={{ 'aria-labelledby': labelId }}
-                  onChange={(e) => {
-                    todoListData[index].state = e.target.checked;
-                    setTodoListData(todoListData);
-                  }}
+                  inputProps={{ "aria-labelledby": labelId }}
                 />
               </ListItemIcon>
               <ListItemText id={labelId} primary={`${value.desc}`} />
-            </ListItemButton>
-          </ListItem>
-        );
-      })}
-    </List>
+            </ListItem>
+          )
+        })}
+      </List>
 
-    <TextField
+      <TextField
         label="Add ToDo"
         id="textField"
         variant="outlined"
@@ -155,17 +141,16 @@ function TodoPageView() {
         placeholder="Enter a new todo"
         onChange={(e) => setInputStr(e.target.value)}
         sx={{ margin: "2rem 0" }}
-    />
+      />
 
-    <Button
+      <Button
         variant="contained"
         color="primary"
         onClick={allTodoListData}
         sx={{ margin: "-1rem 0 3rem 0" }}
-        >
+      >
         Add
-    </Button>
-
+      </Button>
     </Box>
   )
 }
