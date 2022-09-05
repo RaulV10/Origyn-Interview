@@ -7,9 +7,22 @@ Thanks for considering me as a potential employee, here is my hiring project as 
 
 - Install the Internet Computer SDK
 
+### macOS / Linux
+
 ```
-sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+DFX_VERSION=0.10.0 sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)
 ```
+
+### Windows 
+There is no native support for `dfx` on Windows. However, by installing the Windows Subsystem for Linux (WSL), you can run dfx also on a Windows system.
+
+Once you have WSL installed, you can install dfx within your WSL Linux terminal:
+
+```
+DFX_VERSION=0.10.0 sh -ci "$(curl -fsSL https://smartcontracts.org/install.sh)
+```
+
+**Note: Make sure your dfx version is version 0.10.0 or change your dfx.json file to match your version, otherwise you may run into issues.**
 
 - NodeJS >=16.0.0
 
